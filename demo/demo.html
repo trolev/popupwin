@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Popupwin</title>
+  <link href="reset.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Popupwin - плагин на jQuery для реализации всплывающих блоков.</h1>
+    <h2>Быстрый старт.</h2>
+    <div class="width48 g-fleft">
+      <code>
+        <h3>Html:</h3>
+        &lt;a href="#popupwin" id="a-popupwin"&gt;Ссылка&lt;/a&gt;<br>
+        &lt;div id="popupwin"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#?" class="close"&gt;&lt;/a&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Содержимое --&gt;<br>
+        &lt;/div&gt;
+        <h3>Html:</h3>
+        #popupwin {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;position: absolute;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+        }
+        <h3>Минимальный JavaScript:</h3>
+        $(document).ready(function(){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin();<br>
+        });<br><br><br>
+      </code>
+      <a href="#bdemo-1" class="b-btn" id="ademo-1">Demo</a>  
+    </div>
+    <div class="width48 g-fright">
+      <code>
+        <h3>Html:</h3>
+        &lt;a <strong>href="#?"</strong> id="a-popupwin"&gt;Ссылка&lt;/a&gt;<br>
+        &lt;div id="popupwin"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#?" class="close"&gt;&lt;/a&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Содержимое --&gt;<br>
+        &lt;/div&gt;
+        <h3>Css:</h3>
+        #popupwin {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;position: absolute;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+        }
+        <h3>Минимальный JavaScript:</h3>
+        $(document).ready(function(){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>pwinBlock: '#popupwin'</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+        });
+      </code>
+      <a href="#bdemo-1" class="b-btn" id="ademo-1-2">Demo</a>  
+    </div>
+    <span class="clearfix"></span>
+    <span class="line"></span>
+
+
+
+    <h2>Пример с callbacks.</h2>
+    <div>
+      <code>
+        $(document).ready(function(){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callbackOpen: function(block, link){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('open');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callbackClose: function(block, link){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('close');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+        });
+      </code>
+      <a href="#bdemo-2" class="b-btn" id="ademo-2">Demo</a>  
+    </div>
+    <span class="line"></span>
+
+
+    <h2>Сменим: фон, скорость анимации, прозрачность фона и кнопку закрытия окна.</h2>
+    <div>
+      <code>
+        $(document).ready(function(){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinClose: '.close',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinBack: '#fff',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinOpacity: 0.6,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinSpeed: 200<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+        });
+      </code>
+      <a href="#bdemo-3" class="b-btn" id="ademo-3">Demo</a>  
+    </div>
+    <span class="line"></span>
+
+    <h2>Все параметры (по умолчанию).</h2>
+    <div>
+      <code>
+        $(document).ready(function(){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinBlock: false,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinClose: '.close',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinBack: '#000', // При false фон не отобразится<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinOpacity: 0.3,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinSpeed: 'slow',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callbackOpen: function(block, link){},<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callbackClose: function(block, link){}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+        });
+      </code> 
+    </div>
+<br><br><br>
+
+  </div>
+
+  <div class="win" id="bdemo-1">
+    <span class="title">Демо 1.1</span>
+    <a href="#?" class="close"></a>
+    <input type="text" name=""><br><br>
+    <input type="text" name=""><br><br>
+    <input type="button" value="Send" class="btn">
+  </div>
+
+
+  <div class="win" id="bdemo-1-2">
+    <span class="title">Демо 1.2</span>
+    <a href="#?" class="close"></a>
+    <input type="text" name=""><br><br>
+    <input type="text" name=""><br><br>
+    <input type="button" value="Send" class="btn">
+  </div>
+
+
+  <div class="win" id="bdemo-2">
+    <span class="title">Демо 2</span>
+    <a href="#?" class="close"></a>
+    <input type="text" name=""><br><br>
+    <input type="text" name=""><br><br>
+    <input type="button" value="Send" class="btn">
+  </div>
+
+  <div class="win" id="bdemo-3">
+    <span class="title">Демо 3</span>
+    <a href="#?" class="close"></a>
+    <input type="text" name=""><br><br>
+    <input type="text" name=""><br><br>
+    <input type="button" value="Send" class="btn">
+  </div>
+
+
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="jquery.popupwin.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#ademo-1').popupwin();
+    $('#ademo-1-2').popupwin({
+      pwinBlock: '#bdemo-1-2'
+    });
+    $('#ademo-2').popupwin({
+      callbackOpen: function(block, link){
+        alert('open');
+      },
+      callbackClose: function(block, link){
+        alert('close');
+      }
+    });
+    $('#ademo-3').popupwin({
+      pwinClose: '.close',
+      pwinBack: '#fff',
+      pwinOpacity: 0.6,
+      pwinSpeed: 200
+    });
+  });
+</script>
+</body>
+</html>
+
