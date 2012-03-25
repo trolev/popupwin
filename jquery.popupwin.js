@@ -3,7 +3,6 @@
  */
 
 (function($) {
-
 	function PositionPopup (block){
 		var wHeight = $(window).height();
 		var bHeight = block.innerHeight();
@@ -18,7 +17,6 @@
 			zIndex: 1500
 		});
 	}
-
 	function ClosePopup (block, callbackClose, speed, close) {
 		function cl() {
 			block.fadeOut(speed, 0);
@@ -36,7 +34,6 @@
 			return false;
 		});
 	}
-
 	function ShowPopup (block, color, speed, opacity, close, callbackOpen) {
 		if (callbackOpen) {
 			callbackOpen();
@@ -46,8 +43,7 @@
 		}
 		block.fadeTo(speed, 1);
 	}
-
-	jQuery.fn.popupwin = function(options){
+	jQuery.fn.popupwin = function(options) {
 		var settings = jQuery.extend({
 			pwinBlock: false,
 			pwinClose: '.close',
@@ -84,8 +80,7 @@
 			});
 		});	
 	};
-
-	jQuery.fn.popupwinOpen = function(options){
+	jQuery.fn.popupwinOpen = function(options) {
 		var settings = jQuery.extend({
 			pwinClose: '.close',
 			pwinBack: '#000',
@@ -99,15 +94,13 @@
 			return;
 		})
 	};
-
-	jQuery.fn.popupwinCenter = function(){
+	jQuery.fn.popupwinCenter = function() {
 		this.each(function() {
 			PositionPopup($(this));
 			return;
 		})
 	};
-
-	$(document).ready(function(){
+	$(document).ready(function() {
 		if ($('body > .popupwinback').length == 0) {
 			$('body').append('<div class="popupwinback" style="position:fixed; left:0; right:0; top:0; bottom:0;display:none;z-index:1000;"></div>');	
 		}

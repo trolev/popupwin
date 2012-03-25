@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <h1>Popupwin - плагин на jQuery для реализации всплывающих блоков.</h1>
+    <h1>Popupwin v. 2.1b - jQuery плагин для реализации всплывающих блоков.</h1>
     <h2>Быстрый старт.</h2>
     <div class="width48 g-fleft">
       <code>
@@ -18,7 +18,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#?" class="close"&gt;&lt;/a&gt;<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Содержимое --&gt;<br>
         &lt;/div&gt;
-        <h3>Html:</h3>
+        <h3>Css:</h3>
         #popupwin {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;position: absolute;<br>
         &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
@@ -54,9 +54,6 @@
     </div>
     <span class="clearfix"></span>
     <span class="line"></span>
-
-
-
     <h2>Пример с callbacks.</h2>
     <div>
       <code>
@@ -74,8 +71,6 @@
       <a href="#bdemo-2" class="b-btn" id="ademo-2">Demo</a>  
     </div>
     <span class="line"></span>
-
-
     <h2>Сменим: фон, скорость анимации, прозрачность фона и кнопку закрытия окна.</h2>
     <div>
       <code>
@@ -91,7 +86,6 @@
       <a href="#bdemo-3" class="b-btn" id="ademo-3">Demo</a>  
     </div>
     <span class="line"></span>
-
     <h2>Все параметры (по умолчанию).</h2>
     <div>
       <code>
@@ -108,8 +102,24 @@
         });
       </code> 
     </div>
+    <span class="line"></span>
+    <h2>И...</h2>
+    <div>
+      <code>
+        $(document).ready(function(){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;// Открыть блок #popupwin при загрузке страницы.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#popupwin').popupwinOpen({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinClose: '.close',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinBack: '#000',<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinOpacity: 0.3,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinSpeed: 'slow'<br>         
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br><br> 
+        &nbsp;&nbsp;&nbsp;&nbsp;// Расположить блок #popupwin по центру экрана.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#popupwin').popupwinCenter();<br>
+        });
+      </code> 
+    </div>
 <br><br><br>
-
   </div>
 
   <div class="win" id="bdemo-1">
@@ -146,15 +156,17 @@
     <input type="button" value="Send" class="btn">
   </div>
 
-
 <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="jquery.popupwin.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
+
     $('#ademo-1').popupwin();
+
     $('#ademo-1-2').popupwin({
       pwinBlock: '#bdemo-1-2'
     });
+
     $('#ademo-2').popupwin({
       callbackOpen: function(block, link){
         alert('open');
@@ -163,12 +175,14 @@
         alert('close');
       }
     });
+
     $('#ademo-3').popupwin({
       pwinClose: '.close',
       pwinBack: '#fff',
       pwinOpacity: 0.6,
       pwinSpeed: 200
     });
+
   });
 </script>
 </body>

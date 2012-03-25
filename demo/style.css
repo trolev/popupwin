@@ -1,5 +1,4 @@
-body {background:url('img/bg.png') repeat 0 0;}
-
+body {background:url('img/bg.png') repeat 0 0; font-family: sans-serif; }
 
 .wrapper {
   width: 900px;
@@ -13,7 +12,7 @@ h1 {
   text-shadow: 1px 1px 1px #1e2327;
   color: #e9efef;
   text-align: center;
-  margin: 50px;
+  margin: 50px 0 ;
 }
 
 h3 {
@@ -78,8 +77,6 @@ h2 {
   font-size: 16px;
 }
 
-
-
 code {
   border:1px solid #262b33;
   padding:10px;
@@ -99,9 +96,6 @@ code strong {
 .width48 {
   width: 48%;
 }
-
-
-
 
 .b-btn {
   display: inline-block;
@@ -142,56 +136,10 @@ code strong {
 }
 
 .b-btn:active {
-/*  border-color: #724d0d;*/
   -webkit-box-shadow: 0 0 2px #95630c;
   -moz-box-shadow: 0 0 2px #95630c;
   -ms-box-shadow: 0 0 2px #95630c;
   box-shadow: 0 0 2px #95630c;
   text-shadow: none;
   line-height: 32px;
-}
-
-
-
-
-
-
-
-
-.wrap {
-  padding: 30px;
-  width: 900px;
-  margin: 0 auto;
-  border-bottom: 1px solid #e9efef;
-  color: #ccc;
-  font-size: 12px;
-}
-
-.wrap p {
-  margin: 0 0 15px;
-}
-
-
-
-.popupwin {
-  display: none;
-}
-
-
-
-
-
-.popupwin {
-  background: #fff;
-  padding: 50px;
-  width: 150px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  border-radius: 10px;
-  position: absolute;
-  left: 70px;
-  top: 100px;
-  height: 100px;
-  background: #f7f7f7;
 }
