@@ -2,24 +2,24 @@
   Popupwin.
   Version: 2.1b
   https://github.com/trolev/Popupwin/
-	
-	Example:
-		  HTML:
-			    <a href="#popupwin" id="a-popupwin">Link</a>
-			    <div id="popupwin">
-			      <a href="#?" class="close"></a>
-			      <!-- content -->
-			    </div>
-		  CSS:
-			  	#popupwin {
-			  		position: absolute;
-			  		display: none;
-			  	}
-		  JavaScript:
-		  		$('#a-popupwin').popupwin();
+  
+  Example:
+      HTML:
+          <a href="#popupwin" id="a-popupwin">Link</a>
+          <div id="popupwin">
+            <a href="#?" class="close"></a>
+            <!-- content -->
+          </div>
+      CSS:
+          #popupwin {
+            position: absolute;
+            display: none;
+          }
+      JavaScript:
+          $('#a-popupwin').popupwin();
 
 
-	More examples: https://github.com/trolev/Popupwin/
+  More examples: https://github.com/trolev/Popupwin/
 */
 
 (function($) {
@@ -117,6 +117,17 @@
   jQuery.fn.popupwinCenter = function() {
     this.each(function() {
       PositionPopup($(this));
+      return;
+    })
+  };
+  jQuery.fn.popupwinClose = function(options) {
+    var settings = jQuery.extend({
+      pwinSpeed: 'slow'
+    },options);
+    this.each(function() {
+      var $this = $(this);
+      $this.fadeOut(settings.pwinSpeed, 0);
+      $('.popupwinback').fadeOut(settings.pwinSpeed, 0);
       return;
     })
   };
