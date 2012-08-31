@@ -1,6 +1,6 @@
 /*
   Popupwin.
-  Version: 2.1b
+  Version: 2.2b
   https://github.com/trolev/Popupwin/
   
   Example:
