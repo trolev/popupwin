@@ -157,31 +157,41 @@
   </div>
 
 <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="jquery.popupwin.js"></script>
+<script type="text/javascript" src="../jquery.popupwin.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
 
-    $('#ademo-1').popupwin();
-
+    $('#ademo-1').popupwin({
+        callbackOpen: function(block, link){
+            console.log(link);
+        },
+        callbackClose: function(block, link){
+             console.log(link);
+        }
+    });
     $('#ademo-1-2').popupwin({
-      pwinBlock: '#bdemo-1-2'
+        pwinBlock: '#bdemo-1-2'
     });
 
-    $('#ademo-2').popupwin({
-      callbackOpen: function(block, link){
-        alert('open');
-      },
-      callbackClose: function(block, link){
-        alert('close');
-      }
-    });
+    // $('#ademo-1-2').popupwin({
+    //   pwinBlock: '#bdemo-1-2'
+    // });
 
-    $('#ademo-3').popupwin({
-      pwinClose: '.close',
-      pwinBack: '#fff',
-      pwinOpacity: 0.6,
-      pwinSpeed: 200
-    });
+    // $('#ademo-2').popupwin({
+    //   callbackOpen: function(block, link){
+    //     alert('open');
+    //   },
+    //   callbackClose: function(block, link){
+    //     alert('close');
+    //   }
+    // });
+
+    // $('#ademo-3').popupwin({
+    //   pwinClose: '.close',
+    //   pwinBack: '#fff',
+    //   pwinOpacity: 0.6,
+    //   pwinSpeed: 200
+    // });
 
   });
 </script>
