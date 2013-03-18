@@ -1,7 +1,6 @@
 # Popupwin v.3
 
-## jQuery plugin to realization pop-ups windows.
-## Плагин для реализации всплывающих окон.
+jQuery plugin to realization pop-ups windows.
 
 ~~~~{.css}
   #id-popup {
