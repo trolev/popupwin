@@ -2,15 +2,20 @@
 
 ### Быстрый старт
 
-  <a href="#id-popup" id="link"&gt;Link</a&gt;
-  <div id="id-popup"&gt;
+~~~~{.bash}
+  <a href="#id-popup" id="link">
+  Link
+  </a>
+  <div id="id-popup">
     Content...
-  </div&gt;
+  </div>
   $('#link').popupwin();
 
 или:
-  <a href="#" id="link"&gt;Link</a&gt;
-  <div id="id-popup"&gt;
+  <a href="#" id="link">Link</a>
+  <div id="id-popup">
     Content...
-  </div&gt;
+  </div>
   $('#link').popupwin();
+~~~~
+
