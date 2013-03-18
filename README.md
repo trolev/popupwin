@@ -70,7 +70,7 @@ Open a window when the page loads.
 
 ### All settings
 * `pwinBlock` (string/object or false).
-By default: false. См. пример.
+By default: false. See example.
 * `pwinClose` (string).
 Selector element within `pwinBlock`. 
 By default: '.close'
@@ -82,6 +82,6 @@ Opacity background.
 By default: 0.3.
 * `pwinSpeed` (integer).
 Animation speed.
-By default: 200.
+By default: 400.
 * `callbackOpen` (callback).
 * `callbackClose` (callback).

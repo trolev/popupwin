@@ -1,6 +1,6 @@
 /*
   Popupwin.
-  Version: 2.2b
+  Version: 3.0
   https://github.com/trolev/Popupwin/
   Examples: https://github.com/trolev/Popupwin/
 */
@@ -20,7 +20,7 @@
     pwinClose: '.close',
     pwinBack: '#000',
     pwinOpacity: 0.3,
-    pwinSpeed: 200,
+    pwinSpeed: 400,
     callbackOpen: function(block, link){},
     callbackClose: function(block, link){},
   };
