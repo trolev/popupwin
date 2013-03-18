@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <h1>Popupwin v. 2.1b - всплывающие окна.</h1>
+    <h1>Popupwin v. 3.0</h1>
     <h2>Быстрый старт.</h2>
     <div class="width48 g-fleft">
       <code>
@@ -16,14 +16,14 @@
         &lt;a href="#popupwin" id="a-popupwin"&gt;Ссылка&lt;/a&gt;<br>
         &lt;div id="popupwin"&gt;<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#?" class="close"&gt;&lt;/a&gt;<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Содержимое --&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Content --&gt;<br>
         &lt;/div&gt;
         <h3>Css:</h3>
         #popupwin {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;position: absolute;<br>
         &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
         }
-        <h3>Минимальный JavaScript:</h3>
+        <h3>JavaScript:</h3>
         $(document).ready(function(){<br>
         &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin();<br>
         });<br><br><br>
@@ -36,14 +36,14 @@
         &lt;a <strong>href="#?"</strong> id="a-popupwin"&gt;Ссылка&lt;/a&gt;<br>
         &lt;div id="popupwin"&gt;<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#?" class="close"&gt;&lt;/a&gt;<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Содержимое --&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Content --&gt;<br>
         &lt;/div&gt;
         <h3>Css:</h3>
         #popupwin {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;position: absolute;<br>
         &nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
         }
-        <h3>Минимальный JavaScript:</h3>
+        <h3>JavaScript:</h3>
         $(document).ready(function(){<br>
         &nbsp;&nbsp;&nbsp;&nbsp;$('#a-popupwin').popupwin({<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>pwinBlock: '#popupwin'</strong><br>
@@ -161,37 +161,27 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    $('#ademo-1').popupwin({
-        callbackOpen: function(block, link){
-            console.log(link);
-        },
-        callbackClose: function(block, link){
-             console.log(link);
-        }
-    });
+    $('#ademo-1').popupwin();
+
     $('#ademo-1-2').popupwin({
-        pwinBlock: '#bdemo-1-2'
+      pwinBlock: '#bdemo-1-2'
     });
 
-    // $('#ademo-1-2').popupwin({
-    //   pwinBlock: '#bdemo-1-2'
-    // });
+    $('#ademo-2').popupwin({
+      callbackOpen: function(block, link){
+        alert('open');
+      },
+      callbackClose: function(block, link){
+        alert('close');
+      }
+    });
 
-    // $('#ademo-2').popupwin({
-    //   callbackOpen: function(block, link){
-    //     alert('open');
-    //   },
-    //   callbackClose: function(block, link){
-    //     alert('close');
-    //   }
-    // });
-
-    // $('#ademo-3').popupwin({
-    //   pwinClose: '.close',
-    //   pwinBack: '#fff',
-    //   pwinOpacity: 0.6,
-    //   pwinSpeed: 200
-    // });
+    $('#ademo-3').popupwin({
+      pwinClose: '.close',
+      pwinBack: '#fff',
+      pwinOpacity: 0.6,
+      pwinSpeed: 200
+    });
 
   });
 </script>
