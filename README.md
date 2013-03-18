@@ -2,7 +2,7 @@
 
 Plugin to realization pop-ups.
 
-~~~~{.bash}
+~~~~{.css}
   #id-popup {
     display: none;
   }
