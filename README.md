@@ -6,7 +6,7 @@ jQuery plugin to realization pop-ups windows.
 ~~~~{.css}
   #id-popup {
     display: none;
-  }
+    ...
 ~~~~
 
 ### Quickstart
