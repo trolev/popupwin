@@ -2,15 +2,15 @@
 
 ### Быстрый старт
 
-  <a href="#id-popup" id="link">Link</a>
-  <div id="id-popup">
+  <a href="#id-popup" id="link"&gt;Link</a&gt;
+  <div id="id-popup"&gt;
     Content...
-  </div>
+  </div&gt;
   $('#link').popupwin();
 
 или:
-  <a href="#" id="link">Link</a>
-  <div id="id-popup">
+  <a href="#" id="link"&gt;Link</a&gt;
+  <div id="id-popup"&gt;
     Content...
-  </div>
+  </div&gt;
   $('#link').popupwin();
