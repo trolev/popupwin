@@ -10,20 +10,24 @@ Plugin to realization pop-ups.
 
 ### Quickstart
 
-~~~~{.bash}
+~~~~{.html}
   <a href="#id-popup" id="link">Link</a>
   <div id="id-popup">
     Content...
   </div>
+~~~~
+~~~~{.js}
   $('#link').popupwin();
 ~~~~
 
 or:
-~~~~{.bash}
+~~~~{.html}
   <a href="#" id="link">Link</a>
   <div id="id-popup">
     Content...
   </div>
+~~~~
+~~~~{.js}
   $('#link').popupwin({
     pwinBlock: '#id-popup'
   });
@@ -31,11 +35,13 @@ or:
 
 ### Callbacks
 
-~~~~{.bash}
+~~~~{.html}
   <a href="#id-popup" id="link">Link</a>
   <div id="id-popup">
     Content...
   </div>
+~~~~
+~~~~{.js}
   $('#link').popupwin({
     callbackOpen: function(popup, link){
       alert('open');
@@ -48,11 +54,13 @@ or:
 
 ### and...
 
-~~~~{.bash}
+~~~~{.html}
   <a href="#id-popup" id="link">Link</a>
   <div id="id-popup">
     Content...
   </div>
+~~~~
+~~~~{.js}
   $('#id-popup').popupwin('open', {
     pwinBack: '#ff0000'
   });
@@ -60,19 +68,19 @@ or:
 Open a window when the page loads.
 
 ### All settings
-*`pwinBlock` (string/object or false).
+* `pwinBlock` (string/object or false).
 По умолчанию: false. См. пример.
-*`pwinClose` (string).
+* `pwinClose` (string).
 Селектор на элемент внутри `pwinBlock`. 
 По умолчанию: '.close'
-*`pwinBack` (string).
+* `pwinBack` (string).
 Цвет фонаю
 По умолчанию: '#000'.
-*`pwinOpacity` (float).
+* `pwinOpacity` (float).
 Прозрачность фона.
 По умолчанию: 0.3.
-*`pwinSpeed` (integer).
+* `pwinSpeed` (integer).
 Скорость анимации.
 По умолчанию: 200.
-*`callbackOpen` (callback).
-*`callbackClose` (callback).
+* `callbackOpen` (callback).
+* `callbackClose` (callback).
