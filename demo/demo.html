@@ -108,14 +108,14 @@
       <code>
         $(document).ready(function(){<br>
         &nbsp;&nbsp;&nbsp;&nbsp;// Открыть блок #popupwin при загрузке страницы.<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;$('#popupwin').popupwinOpen({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#popupwin').popupwin('open', {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinClose: '.close',<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinBack: '#000',<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinOpacity: 0.3,<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pwinSpeed: 'slow'<br>         
         &nbsp;&nbsp;&nbsp;&nbsp;});<br><br> 
         &nbsp;&nbsp;&nbsp;&nbsp;// Расположить блок #popupwin по центру экрана.<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;$('#popupwin').popupwinCenter();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$('#popupwin').popupwin('center');<br>
         });
       </code> 
     </div>

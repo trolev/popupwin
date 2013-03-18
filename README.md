@@ -1,6 +1,6 @@
 # Popupwin v.3
 
-Plugin to realization pop-ups.
+jQuery plugin to realization pop-ups windows.
 
 ~~~~{.css}
   #id-popup {
@@ -64,6 +64,7 @@ or:
   $('#id-popup').popupwin('open', {
     pwinBack: '#ff0000'
   });
+  $('#id-popup').popupwin('center');
 ~~~~
 Open a window when the page loads.
 
