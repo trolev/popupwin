@@ -5,7 +5,7 @@
   Examples: https://github.com/trolev/Popupwin/
 */
 (function (document, $) {
-  var popupwinbg = $('<div style="position:fixed; left:0; right:0; top:0; bottom:0;display:none;"></div>');
+  var popupwinbg = $('<div style="position:fixed; left:0; right:0; top:0; bottom:0;display:none;z-index:2990;"></div>');
   $('body').append(popupwinbg);
   doc = $(document);
 
