@@ -66,7 +66,7 @@
     show: function(item){
       item.cbopen(item.block, item);
       popupwinbg.css({'background-color': item.bg}).fadeTo(item.speed, item.opacity);
-      item.block.fadeTo(item.speed, 1);
+      item.block.hide().fadeTo(item.speed, 1);
       methods.closeEvents(item);
     },
     closeEvents: function(item) {
