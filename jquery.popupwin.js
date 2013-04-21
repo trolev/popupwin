@@ -1,13 +1,26 @@
-/*
-  Popupwin.
-  Version: 3.0
-  https://github.com/trolev/Popupwin/
-  Examples: https://github.com/trolev/Popupwin/
+/*!
+ * Popupwin
+ * Version: v.3.0.2 (2013-04-21)
+ * 
+ * https://github.com/trolev/Popupwin/
+ * 
+ * Popupwin plugin is MIT License released. Point free to use it for personal and commercial need
 */
-(function (document, $) {
-  var popupwinbg = $('<div style="position:fixed; left:0; right:0; top:0; bottom:0;display:none;z-index:2990;"></div>');
+
+(function ($) {
+
+  var win = $(window),
+      doc = $(document),
+      isTouch = document.createTouch !== undefined,
+      eventType = (isTouch) ? "touchend.pw" : "click.pw",
+      popupwinbg = $('<div style="position:fixed; left:0; right:0; top:0; bottom:0;display:none;z-index:999;"></div>'),
+      baseCSS = {
+        'left': -900000,
+        'top': - 900000,
+        'display': 'block'
+      };
+
   $('body').append(popupwinbg);
-  doc = $(document);
 
   var defaults = {
     pwinBlock: false,
@@ -15,98 +28,122 @@
     pwinBack: '#000',
     pwinOpacity: 0.3,
     pwinSpeed: 400,
-    callbackOpen: function(block, link){},
-    callbackClose: function(block, link){}
+    pwinAnimate: true,
+    callbackOpen: false,
+    callbackClose: false
   };
 
   var methods = {
-    baseInit: function(item, vars) {
-      item.bg = vars.pwinBack;
-      item.opacity = vars.pwinOpacity;
-      item.speed = vars.pwinSpeed;
-      item.close = (typeof vars.pwinClose === "object") ? vars.pwinClose : $(vars.pwinClose, item.block);
-      item.cbopen = vars.callbackOpen;
-      item.cbclose = vars.callbackClose;
-    },
     init : function(options) {
       return this.each(function(){
         var item = $(this),
-        vars = $.extend({}, defaults, options);
+            vars = $.extend({}, defaults, options);
+
         if (vars.pwinBlock) {
           var target = (typeof vars.pwinBlock === "object") ? vars.pwinBlock : $(vars.pwinBlock);
         } else {
           var target = $(item.attr('href'));
         }
+
         if (!target.length) {
           return;
         }
+
         item.block = target;
-        methods.baseInit(item, vars);
-        item.click(function(){
-          methods.position(item.block);
-          methods.show(item);
-          return false
+        item.cls = (typeof vars.pwinClose === "object") ? vars.pwinClose : $(vars.pwinClose, target);
+
+        item.on(eventType, function(e){
+          e.preventDefault();
+          if (typeof vars.callbackOpen === 'function') {
+            vars.callbackOpen(target, item);
+          }
+          methods.setPosition(target);
+          methods.show(item, vars);
+          e.preventDefault();
+          return false;
         });
       });
     },
-    position: function(block){
-      var wHeight = $(window).height();
-      var bHeight = block.innerHeight();
-      var topHeight = (wHeight - bHeight)/2;
-      var scrollTop = (document.body.scrollTop || document.documentElement.scrollTop);
-      var leftWidth = block.innerWidth()/2;
-      var top = (wHeight > bHeight ? scrollTop + topHeight : scrollTop);
-      block.css({
-        'left': 50+'%',
-        'margin-left': -leftWidth,
-        'top': top,
-        'z-index': 3000
+    setPosition: function(block){
+      block.css(baseCSS);
+      var winHeight = isTouch && window.innerHeight ? window.innerHeight : win.height(),
+          winWidth = isTouch && window.innerWidth ? window.innerWidth : win.width(),
+          blockHeight = block.innerHeight(),
+          blockWidth = block.innerWidth(),
+          scrollTop = win.scrollTop(),
+          scrollLeft = win.scrollLeft(),
+          top = (winHeight * 0.5) - (blockHeight * 0.5) + scrollTop,
+          left = (winWidth * 0.5) - (blockWidth * 0.5) + scrollLeft;
+      block.hide().css({
+        'left': (left < 0) ? scrollLeft : left,
+        'top': (top < 0) ? scrollTop : top,
+        'z-index': 1000
       });
     },
-    show: function(item){
-      item.cbopen(item.block, item);
-      popupwinbg.css({'background-color': item.bg}).fadeTo(item.speed, item.opacity);
-      item.block.hide().fadeTo(item.speed, 1);
-      methods.closeEvents(item);
+    show: function(item, vars){
+      popupwinbg.css({'background-color': vars.pwinBack});
+      if (vars.pwinAnimate) {
+        popupwinbg.fadeTo(vars.pwinSpeed, vars.pwinOpacity);
+        item.block.fadeTo(vars.pwinSpeed, 1);
+      } else {
+        popupwinbg.css('opacity', vars.pwinOpacity).show();
+        item.block.show();
+      }
+      methods.closeEvents(item, vars);
     },
-    closeEvents: function(item) {
-      popupwinbg.bind('click.pw', function(){
-        methods.close(item);
+    closeEvents: function(item, vars) {
+      popupwinbg.on(eventType, function(e){
+        e.preventDefault();
+        methods.close(item, vars);
         return false
       });
-      item.close.bind('click.pw', function(){
-        methods.close(item);
+      item.cls.on(eventType, function(e){
+        e.preventDefault();
+        methods.close(item, vars);
         return false
       });
-      doc.bind('keydown.pw', function (e) {
+      doc.on('keydown.pw', function (e) {
         var code   = e.which || e.keyCode;
         if (code === 27) {
-          methods.close(item);
+          methods.close(item, vars);
         }
       });
     },
-    close: function(item) {
-      popupwinbg.fadeOut(item.speed, 0);
-      item.block.fadeOut(item.speed, 0, function(){
-        item.cbclose(item.block, item);
-      });
-      doc.unbind('.pw');
-      item.close.unbind('.pw');
-      popupwinbg.unbind('.pw');
+    close: function(item, vars) {
+      if (vars.pwinAnimate) {
+        popupwinbg.fadeOut(vars.pwinSpeed);
+        item.block.fadeOut(vars.pwinSpeed, function(){
+          if (typeof vars.callbackClose === 'function') {
+            vars.callbackClose(item.block, item);
+          }
+        });
+      } else {
+        popupwinbg.hide();
+        item.block.hide();
+        if (typeof vars.callbackClose === 'function') {
+          vars.callbackClose(item.block, item);
+        }
+      }
+      doc.off('.pw');
+      item.cls.off('.pw');
+      popupwinbg.off('.pw');
     },
     open: function(options) {
       return this.each(function(){
         var item = $(this),
-        vars = $.extend({}, defaults, options);
+            vars = $.extend({}, defaults, options);
+        if (typeof vars.callbackOpen === 'function') {
+          vars.callbackOpen(item);
+        }
         item.block = item;
-        methods.baseInit(item, vars);
-        methods.position(item.block);
-        methods.show(item);
+        item.cls = (typeof vars.pwinClose === "object") ? vars.pwinClose : $(vars.pwinClose, item);
+        methods.setPosition(item);
+        methods.show(item, vars);
       });
     },
     center: function() {
       return this.each(function(){
-        methods.position($(this));
+        methods.setPosition($(this));
       });
     }
   };
@@ -114,11 +151,11 @@
   $.fn.popupwin = function(method) {
     if (methods[method]) {
       return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else if ( typeof method === 'object' || ! method ) {
+    } else if (typeof method === 'object' || !method) {
       return methods.init.apply(this, arguments);
     } else {
       $.error( 'Method named ' +  method + ' does not exist to jQuery.popupwin' );
     } 
   };
 
-}(document, jQuery));
+}(jQuery));
