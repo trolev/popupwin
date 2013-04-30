@@ -1,6 +1,6 @@
 /*!
  * Popupwin
- * Version: v.3.0.2 (2013-04-21)
+ * Version: v.3.1.0 (2013-04-30)
  * 
  * https://github.com/trolev/Popupwin/
  * 
@@ -30,7 +30,9 @@
     pwinSpeed: 400,
     pwinAnimate: true,
     callbackOpen: false,
-    callbackClose: false
+    callbackClose: false,
+    fixed: false,
+    resize: true
   };
 
   var methods = {
@@ -57,28 +59,47 @@
           if (typeof vars.callbackOpen === 'function') {
             vars.callbackOpen(target, item);
           }
-          methods.setPosition(target);
+          methods.setPosition(target, false, vars.fixed);
           methods.show(item, vars);
-          e.preventDefault();
+          if (vars.resize) {
+            win.on('resize.pw', function(){
+              methods.setPosition(target, true, vars.fixed);
+            });
+          }
           return false;
         });
       });
     },
-    setPosition: function(block){
-      block.css(baseCSS);
+    setPosition: function(block, resize, fixed){
+      if (!resize) {
+        block.css(baseCSS);
+      }
       var winHeight = isTouch && window.innerHeight ? window.innerHeight : win.height(),
           winWidth = isTouch && window.innerWidth ? window.innerWidth : win.width(),
           blockHeight = block.innerHeight(),
           blockWidth = block.innerWidth(),
           scrollTop = win.scrollTop(),
           scrollLeft = win.scrollLeft(),
-          top = (winHeight * 0.5) - (blockHeight * 0.5) + scrollTop,
-          left = (winWidth * 0.5) - (blockWidth * 0.5) + scrollLeft;
-      block.hide().css({
-        'left': (left < 0) ? scrollLeft : left,
-        'top': (top < 0) ? scrollTop : top,
-        'z-index': 1000
-      });
+          top = (winHeight * 0.5) - (blockHeight * 0.5),
+          left = (winWidth * 0.5) - (blockWidth * 0.5);
+      if (!resize) {
+        block.hide();
+      }
+      if (fixed) {
+        block.css({
+          'left': (left < 0) ? 0 : left,
+          'top': (top < 0) ? 0 : top,
+          'z-index': 1000,
+          'position': 'fixed'
+        });
+      } else {
+        block.css({
+          'left': (left < 0) ? scrollLeft : left + scrollLeft,
+          'top': (top < 0) ? scrollTop : top + scrollTop,
+          'z-index': 1000,
+          'position': 'absolute'
+        });
+      }
     },
     show: function(item, vars){
       popupwinbg.css({'background-color': vars.pwinBack});
@@ -127,6 +148,7 @@
       doc.off('.pw');
       item.cls.off('.pw');
       popupwinbg.off('.pw');
+      win.off('.pw');
     },
     open: function(options) {
       return this.each(function(){
@@ -137,13 +159,13 @@
         }
         item.block = item;
         item.cls = (typeof vars.pwinClose === "object") ? vars.pwinClose : $(vars.pwinClose, item);
-        methods.setPosition(item);
+        methods.setPosition(target, false, vars.fixed);
         methods.show(item, vars);
       });
     },
     center: function() {
       return this.each(function(){
-        methods.setPosition($(this));
+        methods.setPosition($(this), true);
       });
     }
   };

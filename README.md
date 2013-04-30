@@ -84,5 +84,11 @@ By default: 0.3.
 * `pwinSpeed` (integer).
 Animation speed.
 By default: 400.
+* `fixed` (boolean).
+CSS position
+By default: false.
+* `resize` (boolean).
+Change of popup position during resizing the window
+By default: true.
 * `callbackOpen` (callback).
 * `callbackClose` (callback).
