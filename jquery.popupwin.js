@@ -1,6 +1,6 @@
 /*!
  * Popupwin
- * Version: v.3.1.0 (2013-04-30)
+ * Version: v.3.1.1 (August 1, 2013)
  * 
  * https://github.com/trolev/Popupwin/
  * 
@@ -159,7 +159,7 @@
         }
         item.block = item;
         item.cls = (typeof vars.pwinClose === "object") ? vars.pwinClose : $(vars.pwinClose, item);
-        methods.setPosition(target, false, vars.fixed);
+        methods.setPosition(item, false, vars.fixed);
         methods.show(item, vars);
       });
     },
