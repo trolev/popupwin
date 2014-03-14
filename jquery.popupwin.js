@@ -1,6 +1,6 @@
 /*!
  * Popupwin
- * Version: v.3.1.1 (August 1, 2013)
+ * Version: v.3.1.2 (March 14, 2014)
  * 
  * https://github.com/trolev/Popupwin/
  * 
@@ -11,7 +11,8 @@
 
   var win = $(window),
       doc = $(document),
-      isTouch = document.createTouch !== undefined,
+      is_mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent),
+      isTouch = ('ontouchstart' in window && is_mobile) ? true : false,
       eventType = (isTouch) ? "touchend.pw" : "click.pw",
       popupwinbg = $('<div style="position:fixed; left:0; right:0; top:0; bottom:0;display:none;z-index:999;"></div>'),
       baseCSS = {
